@@ -47,8 +47,8 @@ export default function TableManager() {
     try {
       const table_number = parseInt(newTableNum)
       if (isNaN(table_number)) throw new Error('Invalid table number')
-      
-      const appUrl = window.location.origin
+      // Use the production domain to ensure all QR codes reliably point to the live app
+      const appUrl = 'https://ressphere.vercel.app'
       
       // Step 1: Pre-generate a UUID to simplify the ONE-STEP insert avoiding the NOT NULL UNIQUE constraint.
       const id = crypto.randomUUID()
