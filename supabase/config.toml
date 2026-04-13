@@ -1,0 +1,43 @@
+# For more information, see: https://supabase.com/docs/reference/cli/config
+project_id = "your-project-id"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage"]
+
+[db]
+port = 54322
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+
+[storage]
+enabled = true
+
+[auth]
+enabled = true
+
+[functions]
+[functions.create-order]
+verify_jwt = false
+
+[functions.get-menu]
+verify_jwt = false
+
+[functions.get-orders]
+verify_jwt = false
+
+[functions.update-order-status]
+verify_jwt = false
+
+[functions.mark-as-paid]
+verify_jwt = false
+
+[functions.get-table-by-qr]
+verify_jwt = false

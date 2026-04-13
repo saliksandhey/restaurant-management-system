@@ -1,0 +1,29 @@
+{
+  "name": "qr-restaurant-ordering-system",
+  "version": "1.0.0",
+  "description": "Complete QR-based restaurant ordering system using Supabase Edge Functions",
+  "main": "index.js",
+  "scripts": {
+    "dev": "supabase start && supabase functions serve",
+    "deploy": "supabase functions deploy",
+    "db:migrate": "supabase db push",
+    "db:seed": "supabase db seed",
+    "db:reset": "supabase db reset",
+    "functions:serve": "supabase functions serve",
+    "functions:deploy": "supabase functions deploy",
+    "link": "supabase link --project-ref your-project-ref"
+  },
+  "keywords": [
+    "restaurant",
+    "ordering-system",
+    "supabase",
+    "edge-functions",
+    "qr-code",
+    "deno"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "supabase": "^1.148.6"
+  }
+}
