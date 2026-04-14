@@ -25,7 +25,7 @@ export default function AdminDashboard() {
           *,
           tables(table_number),
           order_items(
-            id, quantity, price,
+            id, quantity, price, kitchen_status,
             menu_items(name)
           )
         `)
@@ -61,11 +61,17 @@ export default function AdminDashboard() {
         'postgres_changes',
         { event: '*', schema: 'public', table: 'orders' },
         (payload) => {
-          if (payload.new && payload.new.status === 'ready' && (!payload.old || payload.old.status !== 'ready')) {
+          // Notify when a new order comes in
+          if (payload.eventType === 'INSERT' && payload.new?.status === 'pending') {
             setUnreadNotifications(prev => prev + 1)
           }
           fetchCoreData()
         }
+      )
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'order_items' },
+        () => fetchCoreData()
       )
       .subscribe()
 
@@ -88,14 +94,16 @@ export default function AdminDashboard() {
 
   const navItems = [
     { id: 'dashboard', label: 'Overview', icon: <i className="fa-solid fa-chart-pie"></i> },
-    { id: 'orders', label: 'Ready Orders', icon: <i className="fa-solid fa-bell-concierge"></i> },
+    { id: 'orders', label: 'Active Orders', icon: <i className="fa-solid fa-bell-concierge"></i> },
     { id: 'payments', label: 'Financials', icon: <i className="fa-solid fa-wallet"></i> },
     { id: 'menu', label: 'Menu Catalog', icon: <i className="fa-solid fa-layer-group"></i> },
     { id: 'waiters', label: 'Staff Hub', icon: <i className="fa-solid fa-user-shield"></i> },
     { id: 'tables', label: 'Table Maps', icon: <i className="fa-solid fa-compass"></i> },
   ]
 
-  const readyOrders = orders.filter(o => o.status === 'ready')
+  // Orders awaiting payment = everything not paid or cancelled
+  const activeOrders = orders.filter(o => o.status !== 'paid' && o.status !== 'cancelled')
+  const readyOrders = activeOrders // alias for OrderManager prop
 
   if (loading && orders.length === 0) {
     return (

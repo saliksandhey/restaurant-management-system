@@ -105,17 +105,17 @@ export default function DashboardView({ orders, payments }) {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-        <div className="bg-white/60 backdrop-blur-3xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80">
+        <div className="glass p-8 rounded-[2rem]">
           <div className="flex justify-between items-center mb-8">
              <h3 className="text-xl font-black text-slate-800 tracking-tight">Sales Revenue</h3>
-             <span className="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-500 uppercase tracking-widest">Last 7 Days</span>
+             <span className="px-3 py-1 bg-slate-100 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-widest border border-slate-200">Last 7 Days</span>
           </div>
           
           <div className="space-y-4">
             {salesData.map((data, i) => (
               <div key={i} className="flex items-center group">
-                <span className="w-16 text-sm font-black text-slate-400 group-hover:text-slate-700 transition-colors">{data.date}</span>
-                <div className="flex-1 mx-4 h-5 bg-slate-100 rounded-full overflow-hidden shadow-inner flex">
+                <span className="w-16 text-xs font-black uppercase text-slate-400 group-hover:text-slate-700 transition-colors tracking-widest">{data.date}</span>
+                <div className="flex-1 mx-4 h-5 bg-slate-100/50 border border-slate-200 rounded-full overflow-hidden shadow-inner flex">
                   <div 
                     className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-emerald-400 to-teal-400 opacity-90 group-hover:opacity-100 relative" 
                     style={{ width: `${(data.revenue / maxRevenue) * 100}%` }}
@@ -123,7 +123,7 @@ export default function DashboardView({ orders, payments }) {
                     <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full blur-[2px]"></div>
                   </div>
                 </div>
-                <span className="w-20 text-right font-black text-slate-700 text-lg group-hover:scale-105 transition-transform origin-right">₹{data.revenue.toFixed(0)}</span>
+                <span className="w-20 text-right font-black text-slate-700 text-lg group-hover:scale-105 transition-transform origin-right font-mono">₹{data.revenue.toFixed(0)}</span>
               </div>
             ))}
             {salesData.length === 0 && (
@@ -135,17 +135,17 @@ export default function DashboardView({ orders, payments }) {
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-3xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80">
+        <div className="glass p-8 rounded-[2rem]">
           <div className="flex justify-between items-center mb-8">
              <h3 className="text-xl font-black text-slate-800 tracking-tight">Order Volume</h3>
-             <span className="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-500 uppercase tracking-widest">Last 7 Days</span>
+             <span className="px-3 py-1 bg-slate-100 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-widest border border-slate-200">Last 7 Days</span>
           </div>
 
           <div className="space-y-4">
             {salesData.map((data, i) => (
               <div key={i} className="flex items-center group">
-                <span className="w-16 text-sm font-black text-slate-400 group-hover:text-slate-700 transition-colors">{data.date}</span>
-                <div className="flex-1 mx-4 h-5 bg-slate-100 rounded-full overflow-hidden shadow-inner flex">
+                <span className="w-16 text-xs font-black uppercase text-slate-400 group-hover:text-slate-700 transition-colors tracking-widest">{data.date}</span>
+                <div className="flex-1 mx-4 h-5 bg-slate-100/50 border border-slate-200 rounded-full overflow-hidden shadow-inner flex">
                   <div 
                     className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-blue-400 to-indigo-400 opacity-90 group-hover:opacity-100 relative" 
                     style={{ width: `${(data.orders / maxOrders) * 100}%` }}
@@ -153,7 +153,7 @@ export default function DashboardView({ orders, payments }) {
                     <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full blur-[2px]"></div>
                   </div>
                 </div>
-                <span className="w-16 text-right font-black text-slate-700 text-lg group-hover:scale-105 transition-transform origin-right">{data.orders}</span>
+                <span className="w-16 text-right font-black text-slate-700 text-lg group-hover:scale-105 transition-transform origin-right font-mono">{data.orders}</span>
               </div>
             ))}
             {salesData.length === 0 && (
@@ -171,13 +171,13 @@ export default function DashboardView({ orders, payments }) {
 
 function StatCard({ title, value, icon, colorClass, bgClass }) {
   return (
-    <div className="bg-white/60 backdrop-blur-3xl p-6 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 flex items-center gap-5 group hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-1">
-      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl shadow-inner ${colorClass} ${bgClass} group-hover:scale-110 transition-transform duration-300`}>
+    <div className="glass p-6 rounded-[2rem] flex items-center gap-5 group hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-1 cursor-default">
+      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/50 ${colorClass} ${bgClass} group-hover:scale-110 transition-transform duration-300`}>
         {icon}
       </div>
       <div>
-        <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-slate-400 mb-1">{title}</h4>
-        <p className="text-3xl font-black text-slate-800 tracking-tight">{value}</p>
+        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">{title}</h4>
+        <p className="text-3xl font-black text-slate-800 tracking-tight font-mono">{value}</p>
       </div>
     </div>
   )

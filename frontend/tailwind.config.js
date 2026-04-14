@@ -5,7 +5,22 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      colors: {
+        brand: {
+          50: '#fff5f0',
+          100: '#ffebd9',
+          500: '#ff6b00',
+          600: '#e65a00',
+          900: '#7a3100',
+        }
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animate")
+  ],
 }
