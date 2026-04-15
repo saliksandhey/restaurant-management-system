@@ -78,29 +78,29 @@ export default function DashboardView({ orders, payments }) {
           title="Total Revenue (Today)" 
           value={`₹${stats.totalRevenue.toFixed(2)}`} 
           icon={<i className="fa-solid fa-money-bill-trend-up"></i>}
-          colorClass="text-emerald-500"
-          bgClass="bg-emerald-50"
+          colorClass="text-orange-600"
+          bgClass="bg-orange-50"
         />
         <StatCard 
           title="Orders Today" 
           value={stats.totalOrdersToday} 
           icon={<i className="fa-solid fa-chart-simple"></i>}
-          colorClass="text-blue-500"
-          bgClass="bg-blue-50" 
+          colorClass="text-yellow-600"
+          bgClass="bg-yellow-50" 
         />
         <StatCard 
           title="Pending Payments" 
           value={stats.pendingPayments} 
           icon={<i className="fa-solid fa-hourglass-half"></i>}
-          colorClass="text-amber-500"
-          bgClass="bg-amber-50" 
+          colorClass="text-red-500"
+          bgClass="bg-red-50" 
         />
         <StatCard 
           title="Completed Orders" 
           value={stats.completedOrders} 
           icon={<i className="fa-solid fa-cloud-check"></i>}
-          colorClass="text-indigo-500"
-          bgClass="bg-indigo-50" 
+          colorClass="text-orange-500"
+          bgClass="bg-orange-100" 
         />
       </div>
 
@@ -117,7 +117,7 @@ export default function DashboardView({ orders, payments }) {
                 <span className="w-16 text-xs font-black uppercase text-slate-400 group-hover:text-slate-700 transition-colors tracking-widest">{data.date}</span>
                 <div className="flex-1 mx-4 h-5 bg-slate-100/50 border border-slate-200 rounded-full overflow-hidden shadow-inner flex">
                   <div 
-                    className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-emerald-400 to-teal-400 opacity-90 group-hover:opacity-100 relative" 
+                    className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-orange-400 to-orange-500 opacity-90 group-hover:opacity-100 relative" 
                     style={{ width: `${(data.revenue / maxRevenue) * 100}%` }}
                   >
                     <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full blur-[2px]"></div>
@@ -147,7 +147,7 @@ export default function DashboardView({ orders, payments }) {
                 <span className="w-16 text-xs font-black uppercase text-slate-400 group-hover:text-slate-700 transition-colors tracking-widest">{data.date}</span>
                 <div className="flex-1 mx-4 h-5 bg-slate-100/50 border border-slate-200 rounded-full overflow-hidden shadow-inner flex">
                   <div 
-                    className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-blue-400 to-indigo-400 opacity-90 group-hover:opacity-100 relative" 
+                    className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-yellow-400 to-orange-400 opacity-90 group-hover:opacity-100 relative" 
                     style={{ width: `${(data.orders / maxOrders) * 100}%` }}
                   >
                     <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full blur-[2px]"></div>

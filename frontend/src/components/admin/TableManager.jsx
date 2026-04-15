@@ -131,7 +131,7 @@ export default function TableManager() {
           )}
           <button 
             onClick={() => setIsAdding(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors whitespace-nowrap"
+            className="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors whitespace-nowrap shadow-md shadow-orange-600/30"
           >
             <i className="fa-solid fa-plus"></i> Add Table
           </button>
@@ -139,28 +139,47 @@ export default function TableManager() {
       </div>
 
       {isAdding && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 max-w-md animate-in slide-in-from-top-4">
-          <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-            <i className="fa-solid fa-qrcode text-blue-600"></i> New Table / QR
-          </h3>
-          <form onSubmit={handleAdd} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Table Number</label>
-              <input 
-                required 
-                type="number" 
-                min="1"
-                value={newTableNum} 
-                onChange={e => setNewTableNum(e.target.value)} 
-                className="w-full p-2 border rounded-md" 
-                placeholder="e.g. 1"
-              />
+        <div className="fixed inset-0 z-50 flex justify-end pb-[env(safe-area-inset-bottom)]">
+          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setIsAdding(false)}></div>
+          
+          <div className="relative z-10 w-full md:w-[400px] h-full bg-slate-50 shadow-2xl flex flex-col border-l border-slate-200 transform translate-x-full duration-300 ease-out fill-mode-forwards" style={{ animation: 'slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
+            <style dangerouslySetInnerHTML={{__html: `
+              @keyframes slide-in-right {
+                from { transform: translateX(100%); }
+                to { transform: translateX(0); }
+              }
+            `}} />
+            <div className="flex justify-between items-center bg-white p-6 md:p-8 border-b border-slate-100 shrink-0">
+              <h3 className="text-2xl font-black flex items-center gap-3 text-slate-800">
+                <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center shadow-inner"><i className="fa-solid fa-qrcode"></i></div>
+                New Table
+              </h3>
+              <button type="button" onClick={() => setIsAdding(false)} className="w-10 h-10 bg-white hover:bg-slate-100 border border-slate-200 text-slate-500 rounded-full flex items-center justify-center transition-colors active:scale-90">
+                <i className="fa-solid fa-xmark"></i>
+              </button>
             </div>
-            <div className="flex gap-3">
-              <button type="button" onClick={() => setIsAdding(false)} className="flex-1 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
-              <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add Table</button>
+            <div className="flex-1 overflow-y-auto p-6 md:p-8">
+              <form id="add-table-form" onSubmit={handleAdd} className="space-y-6">
+                <div>
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Table Number *</label>
+                  <input 
+                    required 
+                    type="number" 
+                    min="1"
+                    value={newTableNum} 
+                    onChange={e => setNewTableNum(e.target.value)} 
+                    className="w-full bg-white border-2 border-slate-100 focus:bg-white focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 rounded-2xl p-4 font-bold outline-none transition-all shadow-inner" 
+                    placeholder="e.g. 1"
+                  />
+                </div>
+              </form>
             </div>
-          </form>
+            <div className="p-6 bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)] shrink-0">
+              <button type="submit" form="add-table-form" className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl font-black flex items-center justify-center gap-2 shadow-xl shadow-orange-600/30 transition-transform active:scale-95">
+                Save Table
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

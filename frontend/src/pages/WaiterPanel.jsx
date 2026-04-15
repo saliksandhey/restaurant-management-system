@@ -12,9 +12,9 @@ export default function WaiterPanel() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 font-sans selection:bg-blue-200">
         <div className="glass p-10 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] w-full max-w-sm border-2 border-white animate-pop-in text-center relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-400 rounded-full blur-[80px] opacity-40"></div>
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-orange-400 rounded-full blur-[80px] opacity-40"></div>
           
-          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-lg shadow-blue-500/30 rotate-3">
+          <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-500 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-lg shadow-orange-500/30 rotate-3">
             <i className="fa-solid fa-user-tie text-4xl text-white -rotate-3"></i>
           </div>
           <h1 className="text-4xl font-black text-slate-800 mb-3 tracking-tighter">Staff Portal</h1>
@@ -45,7 +45,7 @@ export default function WaiterPanel() {
               value={pin}
               onChange={(e) => setPin(e.target.value)}
               placeholder="••••"
-              className="w-full bg-slate-100 border-2 border-white focus:bg-white rounded-2xl p-5 text-center text-4xl font-mono text-slate-800 tracking-[0.5em] focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all outline-none shadow-inner"
+              className="w-full bg-slate-100 border-2 border-white focus:bg-white rounded-2xl p-5 text-center text-4xl font-mono text-slate-800 tracking-[0.5em] focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-all outline-none shadow-inner"
               autoFocus
             />
             {loginError && <p className="text-red-500 bg-red-50/80 backdrop-blur-sm py-2 rounded-xl text-sm font-bold border border-red-100">{loginError}</p>}
@@ -145,13 +145,13 @@ function WaiterDashboard({ waiter, onLogout }) {
     : null
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans pb-[env(safe-area-inset-bottom)] selection:bg-blue-200">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans pb-[env(safe-area-inset-bottom)] selection:bg-orange-200">
       
       {/* PREMIUM HEADER - TABLET OPTIMIZED */}
       <header className="glass shadow-[0_10px_30px_rgb(0,0,0,0.02)] sticky top-0 z-30 pt-safe">
         <div className="max-w-[1600px] mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <div className="w-12 h-12 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <div className="w-12 h-12 bg-gradient-to-tr from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/20">
                <i className="fa-solid fa-bell-concierge text-white text-xl"></i>
             </div>
             <nav className="hidden md:flex bg-slate-100 p-1.5 rounded-2xl shadow-inner border border-slate-200/50">
@@ -186,8 +186,8 @@ function WaiterDashboard({ waiter, onLogout }) {
 
         {/* Mobile Nav */}
         <div className="flex md:hidden border-t border-slate-100 bg-white">
-          <button onClick={() => setActiveTab('tables')} className={`flex-1 py-4 font-black text-sm transition-all border-b-2 ${activeTab === 'tables' ? 'border-blue-600 text-blue-600 bg-blue-50/50' : 'border-transparent text-slate-400'}`}>MAP</button>
-          <button onClick={() => setActiveTab('orders')} className={`flex-1 py-4 font-black text-sm transition-all border-b-2 ${activeTab === 'orders' ? 'border-blue-600 text-blue-600 bg-blue-50/50' : 'border-transparent text-slate-400'}`}>ORDERS</button>
+          <button onClick={() => setActiveTab('tables')} className={`flex-1 py-4 font-black text-sm transition-all border-b-2 ${activeTab === 'tables' ? 'border-orange-500 text-orange-600 bg-orange-50/50' : 'border-transparent text-slate-400'}`}>MAP</button>
+          <button onClick={() => setActiveTab('orders')} className={`flex-1 py-4 font-black text-sm transition-all border-b-2 ${activeTab === 'orders' ? 'border-orange-500 text-orange-600 bg-orange-50/50' : 'border-transparent text-slate-400'}`}>ORDERS</button>
         </div>
       </header>
 
@@ -218,7 +218,7 @@ function WaiterDashboard({ waiter, onLogout }) {
         {loading && tables.length === 0 ? (
           <div className="flex justify-center py-32">
              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 border-4 border-slate-200 border-t-blue-600 rounded-full animate-spin mb-4 shadow-xl"></div>
+                <div className="w-16 h-16 border-4 border-slate-200 border-t-orange-500 rounded-full animate-spin mb-4 shadow-xl"></div>
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Syncing Data...</p>
              </div>
           </div>
@@ -267,10 +267,10 @@ function TableCard({ table, onClick }) {
     statusBadge = 'bg-yellow-100 text-yellow-800 border-yellow-200'
     textClass = 'text-yellow-600'
   } else if (table.displayStatus === 'Active Order') {
-    bgClass = 'bg-blue-50 border-blue-200 shadow-blue-100/50 hover:border-blue-400'
-    icon = <i className="fa-solid fa-utensils text-blue-500"></i>
-    statusBadge = 'bg-blue-100 text-blue-800 border-blue-200'
-    textClass = 'text-blue-600'
+    bgClass = 'bg-orange-50 border-orange-200 shadow-orange-100/50 hover:border-orange-400'
+    icon = <i className="fa-solid fa-utensils text-orange-500"></i>
+    statusBadge = 'bg-orange-100 text-orange-800 border-orange-200'
+    textClass = 'text-orange-600'
     if (table.currentOrder) {
       const mins = Math.floor((Date.now() - new Date(table.currentOrder.created_at).getTime()) / 60000)
       timerText = `${mins}m ago`
@@ -428,15 +428,21 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 pb-[env(safe-area-inset-bottom)]">
-      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-md" onClick={onClose}></div>
+    <div className="fixed inset-0 z-50 flex justify-end pb-[env(safe-area-inset-bottom)]">
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={onClose}></div>
       
-      <div className="bg-white w-full max-w-6xl h-full md:h-[90vh] rounded-[2rem] md:rounded-[3rem] shadow-2xl relative z-10 flex flex-col overflow-hidden animate-pop-in border border-slate-200">
+      <div className="relative z-10 w-full md:w-[900px] lg:w-[1100px] max-w-full h-full bg-white shadow-2xl flex flex-col border-l border-slate-200 transform translate-x-full duration-300 ease-out fill-mode-forwards" style={{ animation: 'slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes slide-in-right {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+          }
+        `}} />
 
         {/* HEADER */}
-        <div className="flex justify-between items-center px-6 py-4 md:px-8 md:py-6 bg-slate-50 border-b border-slate-100">
+        <div className="flex justify-between items-center px-6 py-4 md:px-8 md:py-6 bg-slate-50 border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-5">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-700 rounded-2xl flex items-center justify-center text-2xl font-black shadow-sm border border-blue-200/50">
+            <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-red-100 text-orange-700 rounded-2xl flex items-center justify-center text-2xl font-black shadow-sm border border-orange-200/50">
               T{table.table_number}
             </div>
             <div>
@@ -467,7 +473,7 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
                     <button onClick={toggleOccupied} className={`flex-1 py-5 rounded-2xl font-black text-base transition-all shadow-sm active:scale-95 border-2 ${table.status === 'occupied' ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}>
                       {table.status === 'occupied' ? 'Free Table' : 'Mark Occupied'}
                     </button>
-                    <button onClick={() => setView('menu')} className="flex-1 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black shadow-xl shadow-blue-600/30 transition-all active:scale-95 text-base">
+                    <button onClick={() => setView('menu')} className="flex-1 py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl font-black shadow-xl shadow-orange-600/30 transition-all active:scale-95 text-base">
                       + Create Order
                     </button>
                   </div>
@@ -537,7 +543,7 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
                   {/* Order Actions */}
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <button onClick={() => setView('menu')} className="flex-1 py-5 bg-white border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 rounded-2xl font-black transition-all active:scale-95 flex justify-center items-center gap-3 text-lg">
-                      <i className="fa-solid fa-plus-circle text-xl text-blue-500"></i> Add More Items
+                      <i className="fa-solid fa-plus-circle text-xl text-orange-500"></i> Add More Items
                     </button>
                     <button
                       onClick={markPaid}
@@ -560,7 +566,7 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
               <div className="flex-1 bg-white p-6 md:p-8 overflow-y-auto border-r border-slate-100 flex flex-col">
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <button onClick={() => setView('details')} className="btn-ghost px-0 py-1 mb-2 text-sm text-blue-600 font-bold uppercase tracking-widest hover:bg-transparent hover:text-blue-700">
+                    <button onClick={() => setView('details')} className="btn-ghost px-0 py-1 mb-2 text-sm text-orange-600 font-bold uppercase tracking-widest hover:bg-transparent hover:text-orange-700">
                       <i className="fa-solid fa-arrow-left mr-1"></i> Back
                     </button>
                     <h3 className="text-4xl font-black text-slate-800 tracking-tight">Menu Server</h3>
@@ -574,7 +580,7 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
                         value={customerName}
                         onChange={e => setCustomerName(e.target.value)}
                         placeholder="Customer Name"
-                        className="w-full bg-slate-50 border-2 border-slate-100 focus:bg-white focus:border-blue-500 rounded-xl py-3 pl-11 pr-4 font-bold outline-none transition-all"
+                        className="w-full bg-slate-50 border-2 border-slate-100 focus:bg-white focus:border-orange-500 rounded-xl py-3 pl-11 pr-4 font-bold outline-none transition-all"
                       />
                     </div>
                   )}
@@ -646,7 +652,7 @@ function TableDetailsModal({ table, menuItems, onClose, refreshData }) {
                         <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-xl border border-slate-100 shadow-inner">
                           <button onClick={() => removeCart(item.id)} className="w-9 h-9 flex items-center justify-center bg-white rounded-lg shadow-sm font-black text-slate-600 hover:text-red-500 active:scale-90"><i className="fa-solid fa-minus text-[10px]"></i></button>
                           <span className="font-black text-lg w-6 text-center text-slate-800">{item.quantity}</span>
-                          <button onClick={() => addToCart(item)} className="w-9 h-9 flex items-center justify-center bg-white rounded-lg shadow-sm font-black text-slate-600 hover:text-blue-600 active:scale-90"><i className="fa-solid fa-plus text-[10px]"></i></button>
+                          <button onClick={() => addToCart(item)} className="w-9 h-9 flex items-center justify-center bg-white rounded-lg shadow-sm font-black text-slate-600 hover:text-orange-600 active:scale-90"><i className="fa-solid fa-plus text-[10px]"></i></button>
                         </div>
                       </div>
                     ))
@@ -705,9 +711,9 @@ function OrdersList({ orders, onSelectOrder }) {
         </thead>
         <tbody className="divide-y divide-slate-50">
           {orders.map(o => (
-            <tr key={o.id} onClick={() => onSelectOrder(o)} className="hover:bg-blue-50/50 cursor-pointer transition-colors group">
+            <tr key={o.id} onClick={() => onSelectOrder(o)} className="hover:bg-orange-50/50 cursor-pointer transition-colors group">
               <td className="p-5">
-                <span className="bg-slate-900 text-white px-4 py-2 text-lg rounded-xl font-black block w-max shadow-sm group-hover:bg-blue-600 transition-colors">
+                <span className="bg-slate-900 text-white px-4 py-2 text-lg rounded-xl font-black block w-max shadow-sm group-hover:bg-orange-600 transition-colors">
                   T{o.tables?.table_number}
                 </span>
               </td>
@@ -718,7 +724,7 @@ function OrdersList({ orders, onSelectOrder }) {
               <td className="p-5">
                 <span className={`px-4 py-1.5 rounded-[0.5rem] text-[10px] font-black uppercase tracking-widest block w-max shadow-inner border ${
                   o.status === 'ready' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' :
-                  o.status === 'preparing' ? 'bg-blue-50 text-blue-600 border-blue-200' :
+                  o.status === 'preparing' ? 'bg-orange-50 text-orange-600 border-orange-200' :
                   'bg-yellow-50 text-yellow-600 border-yellow-200'
                 }`}>
                   {o.status}

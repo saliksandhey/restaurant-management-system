@@ -8,6 +8,7 @@ import MenuManager from '../components/admin/MenuManager'
 import TableManager from '../components/admin/TableManager'
 import PaymentsHistory from '../components/admin/PaymentsHistory'
 import WaitersManager from '../components/admin/WaitersManager'
+import AdminSettings from '../components/admin/AdminSettings'
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -99,6 +100,7 @@ export default function AdminDashboard() {
     { id: 'menu', label: 'Menu Catalog', icon: <i className="fa-solid fa-layer-group"></i> },
     { id: 'waiters', label: 'Staff Hub', icon: <i className="fa-solid fa-user-shield"></i> },
     { id: 'tables', label: 'Table Maps', icon: <i className="fa-solid fa-compass"></i> },
+    { id: 'settings', label: 'Settings', icon: <i className="fa-solid fa-gear"></i> },
   ]
 
   // Orders awaiting payment = everything not paid or cancelled
@@ -114,11 +116,11 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen flex pb-[env(safe-area-inset-bottom)] md:pb-0 bg-slate-50 font-sans selection:bg-black selection:text-white relative overflow-hidden">
+    <div className="min-h-screen flex pb-[env(safe-area-inset-bottom)] md:pb-0 bg-slate-50 font-sans selection:bg-black selection:text-white relative">
       
       {/* Decorative blurred background gradients for premium aesthetic */}
-      <div className="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-200/40 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-emerald-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-orange-200/40 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-red-200/30 rounded-full blur-[120px] pointer-events-none"></div>
 
       {/* Sidebar - desktop (Glassmorphism) */}
       <aside className="w-[300px] bg-white/70 backdrop-blur-2xl border-r border-white/60 min-h-screen hidden md:flex flex-col fixed z-20 shadow-[10px_0_40px_-20px_rgba(0,0,0,0.08)]">
@@ -142,7 +144,7 @@ export default function AdminDashboard() {
                   if (isReady) setUnreadNotifications(0)
                 }}
                 className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-left transition-all duration-300 relative group overflow-hidden ${
-                  isActive ? 'bg-black text-white shadow-lg shadow-black/10 scale-[1.02]' : 'text-slate-500 hover:bg-slate-900/5 hover:text-slate-900'
+                  isActive ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30 scale-[1.02]' : 'text-slate-500 hover:bg-slate-900/5 hover:text-slate-900'
                 }`}
               >
                 <div className={`text-xl transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>{item.icon}</div>
@@ -192,7 +194,7 @@ export default function AdminDashboard() {
             <button 
               key={item.id} 
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center p-2 pt-3 rounded-2xl relative transition-all w-[4.5rem] ${isActive ? 'text-black bg-slate-100/80 shadow-inner' : 'hover:bg-slate-50'}`}
+              className={`flex flex-col items-center p-2 pt-3 rounded-2xl relative transition-all w-[4.5rem] ${isActive ? 'text-orange-600 bg-orange-50 shadow-inner' : 'hover:bg-slate-50'}`}
             >
               <span className={`text-xl mb-1.5 transition-transform ${isActive ? 'scale-110' : ''}`}>{item.icon}</span>
               <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'opacity-100' : 'opacity-60'}`}>{item.label.split(' ')[0]}</span>
@@ -206,7 +208,7 @@ export default function AdminDashboard() {
 
       {/* Main Content Area */}
       <main className="flex-1 md:ml-[300px] pt-24 md:pt-8 p-4 md:p-10 w-full max-w-[100vw] md:max-w-[none] min-h-screen mb-20 md:mb-0 relative z-10">
-        <div className="max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both">
+        <div className="max-w-[1600px] mx-auto">
           {/* Section Header */}
           <header className="mb-8 md:mb-12 flex justify-between items-end">
             <div>
@@ -218,13 +220,14 @@ export default function AdminDashboard() {
             {/* Dynamic context actions could go here */}
           </header>
 
-          <div className="animate-in fade-in zoom-in-95 duration-500 delay-150 fill-mode-both">
+          <div>
             {activeTab === 'dashboard' && <DashboardView orders={orders} payments={payments} />}
             {activeTab === 'orders' && <OrderManager readyOrders={readyOrders} fetchOrders={fetchCoreData} />}
             {activeTab === 'payments' && <PaymentsHistory payments={payments} orders={orders} />}
             {activeTab === 'menu' && <MenuManager />}
             {activeTab === 'waiters' && <WaitersManager />}
             {activeTab === 'tables' && <TableManager />}
+            {activeTab === 'settings' && <AdminSettings />}
           </div>
         </div>
       </main>
